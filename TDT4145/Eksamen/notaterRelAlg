@@ -1,0 +1,17 @@
+Projeksjon (Pi symb)
+Gir ut tabell med spesifisert kolonne for et valgt attribut f eks Hund(navn) som gir ut alle unike navn på alle hunder 
+
+Seleksjon (Omega symb)
+Gir ut rader av en tabell basert på logisk betingelser f eks Hund(rase = Mops) Som vil returnere en tabell som oppfyller den 
+logiske betingelsen med alle kolonnene/attributene 
+
+Kartesisk produkt (X symb)
+Kombinerer alle rader fra tab1 med tab2 og resultatet blir en tabell med kolonnene fra begge tabellene. 
+Størrelsen på tabellen vil være tab1(rader)*tab2(rader). Som fort resulterer i store resultattabeller. 
+Gir alle mulige kombinasjoner av attributtene
+Navn (Ola,Kari) X hobby (klatring, foto) = (Ola, klatring) (Ola, foto) (Kari,klatring) (Kari, foto)
+
+
+Union-kompatible tabeller (symboler for union, snitt og differanse) 
+- samme grad, det vil si like mange kolonner (attributer)
+- korresponderende kolonner er definert over samme datatype (domene) datatype tab1 attr1 må være lik datatype tab2 attr1
