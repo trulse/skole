@@ -1,0 +1,32 @@
+Normaliseingsteori 
+
+Restriksjoner for en tabell (restriksjoner miniverden)
+- primærnøkkel bestemmer påfølgende verdier, kan ikke ha like primærnøkler med ulike verdier for resten av attributene
+
+Databasetilstand er database-forekomsten eller dataen på en gitt tid. 
+Den er konsistent når alle reglene i miniverden er oppfylt 
+Inherent constraints er en del av datamodellen og derfor alltid håndheves av DBMS f eks kan ikke være to like rader som følger av at tabellen er en mengde rader
+
+eksplisitte restriksjoner, kan uttrykkes i datamodellen eller databaseskjemaet. Håndheves også av DBMS. Et eksempel er primærnøkler, fremmednøkkel, datatyper, verdi-begrensninger etc
+disse reglene kan vi sette selv, vi kan velge type, vi kan velge fremmednøkkel om den kan være NULL osv 
+
+Applikasjonsbaserte restriksjoner (miniverden regler) 
+De må håndteres utenfor datamodellen, det må programmeres utenom (f eks ingen kan tjene mer en sjefen)
+
+
+
+Primærnøkkel: (xID)
+- må være en unik verdi for vær rad, ingen duplikat av en rad med samme verdi
+
+Redudans (samme informasjon lagres flere ganger) noe som kan gi inkonsistende database-tilstander 
+- f eks fotografID (1,2,1), Navn (Wilse, Erwitt, Wilse). Wilse lagres 2 ganger og må lagres for hver gang FotogradID = 1 noe som skaper Redudans
+
+Anomalier (uheldige eller unintentional egenskaper) (se video til lysark 17 for bildet av sammensetning fotograf og foto i tabell)
+- Et problem vil være at man ikke kan sette inn fotograf(ID)er uten at fotografen har tatt et bilde da raden må registreres med en BildeID
+- Endring av navn på Wilse f eks vil måtte oppdateres i flere rader alle plasser hvor fotografID = 1 
+- Om rader slettes slik at man mister bildeID så vil man muligens miste informasjon om forfattere da de også forsvinner om de ikke har bilder
+
+Ved problemer (lav normalform) så splitter vi opp i mindre tabeller (fære attributter og derav høyere normalform)
+UUnngår mye redudans og innsettings- oppdaterings- og lettings-Anomalier
+Ulempen med  dette er at vi får et design med flere tabeller og derfor må vi kombinere tabeller med "Join" i større grad som vil være mer ressurskrevende ved spørringer
+

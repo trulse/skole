@@ -1,17 +1,43 @@
 Projeksjon (Pi symb)
-Gir ut tabell med spesifisert kolonne for et valgt attribut f eks Hund(navn) som gir ut alle unike navn på alle hunder 
+-Gir ut tabell med spesifisert kolonne for et valgt attribut f eks Hund(navn) som gir ut alle unike navn på alle hunder 
 
 Seleksjon (Omega symb)
-Gir ut rader av en tabell basert på logisk betingelser f eks Hund(rase = Mops) Som vil returnere en tabell som oppfyller den 
-logiske betingelsen med alle kolonnene/attributene 
+-Gir ut rader av en tabell basert på logisk betingelser f eks Hund(rase = Mops) Som vil returnere en tabell som oppfyller den 
+-logiske betingelsen med alle kolonnene/attributene 
 
 Kartesisk produkt (X symb)
-Kombinerer alle rader fra tab1 med tab2 og resultatet blir en tabell med kolonnene fra begge tabellene. 
-Størrelsen på tabellen vil være tab1(rader)*tab2(rader). Som fort resulterer i store resultattabeller. 
-Gir alle mulige kombinasjoner av attributtene
-Navn (Ola,Kari) X hobby (klatring, foto) = (Ola, klatring) (Ola, foto) (Kari,klatring) (Kari, foto)
-
+-Kombinerer alle rader fra tab1 med tab2 og resultatet blir en tabell med kolonnene fra begge tabellene. 
+-Størrelsen på tabellen vil være tab1(rader)*tab2(rader). Som fort resulterer i store resultattabeller. 
+-Gir alle mulige kombinasjoner av attributtene
+-Navn (Ola,Kari) X hobby (klatring, foto) = (Ola, klatring) (Ola, foto) (Kari,klatring) (Kari, foto)
 
 Union-kompatible tabeller (symboler for union, snitt og differanse) 
 - samme grad, det vil si like mange kolonner (attributer)
 - korresponderende kolonner er definert over samme datatype (domene) datatype tab1 attr1 må være lik datatype tab2 attr1
+
+Join operator (symbol to triangler ><)
+- Kombinerer tabeller basert på en betingelse. F eks Person.PNr = Hund.eierPNr 
+- Samme som kartesisk produkt + seleksjon, men unngår å danne unødvendige store tabeller ved å gjøre det direkte
+- Finns ulike Join-operasjoner. Når man bruker ID på ulike tabeller så er det en EQUI-JOIN
+
+Naturlig Join(* symbol)
+- Som equijoin, men betingelser trengs ikke å spesifiserers. betingelsen er implisitt basert på like attributer i 2 ulike tabeller
+- Fjerner også alle duplikat kolonner slik at kolonner med samme attribut ikke vises 2 ganger 
+- kan bli større betingelse enn man trenger og om det gjøres endringer i tabellen kan det også føre til endringer i joinen
+
+Outer Join (lik symbol for join, men har pinner på høyre venstre eller begge sidene avhengig av om det er right outer left outer eller begge)
+- Kan velge full outer join hvor man forstatt vil kunne inkludere de radene som ikke har matchende tupler. Da raden ikke har matchende verdi så vil den 
+- ha NULL som resterende verdier da den ikke matcher noe. Eksempel om man skal vise navnet på alle offerpersonene for alle hundene så vil man med outer join også
+- kunne inkludere de hundene som ikke har bitt noen hvor navnet på de som er bitt vil være "NULL"
+
+
+Omdøping (P symbol Rho)
+- kan omdøpe navnet på attributer og resultattabell for å bedre beskrive tabellen 
+- eksempel Hundeeiere(HundeNavn, EierNavn) Der det første er navnet på tabellen og det i parantesen er navna man vil ha på attributene
+
+Sortering (pil opp og ned symbol)
+- Kan sortere tabell på ASC eller DESC eksempel HundeNavn ASC, EierNavn ASC hvor navn vil først sorteres på hundenavn om de er lik går det på person navn
+
+Generelle optimaliseringer
+- Alltid gjør steget som utelukker flest resultater først for å spare transaksjoner. Gjør de mest spesifikke QUERY kallene først, f eks "alder = 3".
+
