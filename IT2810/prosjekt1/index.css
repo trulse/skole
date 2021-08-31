@@ -1,0 +1,51 @@
+body{
+    font-family: sans-serif;
+    max-width: 90vw;
+    margin: auto;
+}
+
+main{
+    max-width: 90vw;
+}
+
+.omKunst {
+    text-align: center;
+
+
+}
+
+nav{
+    top: 0;
+    position: fixed;
+    position: sticky;
+    background-color: rgb(255, 255, 255);
+    
+}
+
+.naver {
+    display: flex;
+    justify-content: space-evenly;
+    border-bottom: dashed;
+
+
+}
+
+.naver h1{
+    font-size: 60px;
+    border-style: none;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow:4px 4px 12px rgb(165, 165, 165);
+    background-color: rgb(245, 248, 255);
+    color: rgb(58, 58, 58);
+
+}
+
+@media screen and (max-width: 600px) {
+    .naver h1 {
+        font-size: 30px;
+    }
+  }
+
+
+

@@ -30,3 +30,19 @@ Ved problemer (lav normalform) så splitter vi opp i mindre tabeller (fære attr
 UUnngår mye redudans og innsettings- oppdaterings- og lettings-Anomalier
 Ulempen med  dette er at vi får et design med flere tabeller og derfor må vi kombinere tabeller med "Join" i større grad som vil være mer ressurskrevende ved spørringer
 
+funksjonell avhengighet 
+
+IR-1 REFLEKSIV Hvis Y delmengde av X så X -> Y
+IR-2 AUGMENTASJON {X -> Y} gir XZ -> YZ
+IR-3 TRANSITIV {X -> Y, Y -> Z} GIR X -> Z
+IR-4 DEKOMPOSISJON {X -> YZ} GIR X -> Y
+IR-5 ADDITIV {X -> Y, X -> Z} GIR X -> YZ
+IR-6 PSEUDOTRANSITIV {X -> Y, WY -> Z} GIR WX -> Z  
+
+TILLUKNING TIL EN MENGDE MED FA-er f+
+F gir de enkelte funksjonelle avhengigehtene F = {a->b; b -> c}
+f+ gir alle funksjonelle avhengigheter som kan utledes fra F f+ = {a->a, a->b.... a->abc, a->ab}
+
+FUNKSJONELL AVHENGIGHET X+ X+ X+ SE 29 MIN VIDEO LYSARK 18 SLIDE 9
+
+
