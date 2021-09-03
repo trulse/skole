@@ -1,3 +1,7 @@
+html{
+    scroll-behavior: smooth;
+}
+
 body{
     font-family: sans-serif;
     max-width: 90vw;
@@ -38,8 +42,24 @@ nav{
     box-shadow:4px 4px 12px rgb(165, 165, 165);
     background-color: rgb(245, 248, 255);
     color: rgb(58, 58, 58);
+}
+
+#kravDok{
+    display: none;
+}
+
+#buttonWrap{
+    display: flex;
+    justify-content: center;
+}
+
+#button{
+    margin: 10px;
+    width: 20vw;
 
 }
+
+
 
 @media screen and (max-width: 600px) {
     .naver h1 {
