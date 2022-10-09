@@ -15,10 +15,10 @@ class DbConnector:
     """
 
     def __init__(self,
-                 HOST="tdt4225-29.idi.ntnu.no",
-                 DATABASE="yep",
-                 USER="testuser",
-                 PASSWORD="test123"):
+                 HOST="",
+                 DATABASE="",
+                 USER="",
+                 PASSWORD=""):
         # Connect to the database
         try:
             self.db_connection = mysql.connect(host=HOST, database=DATABASE, user=USER, password=PASSWORD, port=3306)
