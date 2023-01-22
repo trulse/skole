@@ -2,4 +2,4 @@ Store O = Konstant som gjør at grafen ligger asymptotisk over
 Theta = Konstant som gjør at grafen ligger asymptotisk over og under
 Omega 
 
-Ligning for insertion sort viktig = (N^2 * N * 1/2) = Store O (N^2)
+Ligning for insertion sort viktig = (N^2 * N * 1-2) = Store O (N^2)

@@ -11,6 +11,6 @@ $("#button").on("click", function (event){
 
 } )
 
-//$("#knapp").click(function() {
-//    alert( "Handler for called." );
-//});
+--$("#knapp").click(function() {
+--    alert( "Handler for called." );
+--});

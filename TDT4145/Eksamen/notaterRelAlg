@@ -3,7 +3,7 @@ Projeksjon (Pi symb)
 
 Seleksjon (Omega symb)
 -Gir ut rader av en tabell basert på logisk betingelser f eks Hund(rase = Mops) Som vil returnere en tabell som oppfyller den 
--logiske betingelsen med alle kolonnene/attributene 
+-logiske betingelsen med alle kolonnene-attributene 
 
 Kartesisk produkt (X symb)
 -Kombinerer alle rader fra tab1 med tab2 og resultatet blir en tabell med kolonnene fra begge tabellene. 

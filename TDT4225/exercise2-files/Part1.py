@@ -1,8 +1,9 @@
 from datetime import datetime, date
+from http.client import CONTINUE
 from operator import truediv
 from optparse import Values
 import os
-from tracemalloc import start
+from haversine import haversine
 from DbConnector import DbConnector
 from tabulate import tabulate
 
@@ -90,7 +91,6 @@ class ExampleProgram:
                     query = "INSERT IGNORE INTO %s (id, user_id, transportation_mode, start_date_time, end_date_time) VALUES ('%s','%s', null, '%s', '%s')"
                     self.cursor.execute(query % (table_name, counter, user, starttime, endtime))
                     self.db_connection.commit()
-                    #NOT SQL INJECTION SAFE, but i dont   care              
                     sql = "INSERT INTO TrackPoint (id, activity_id, lat, lon, altitude, data) VALUES {}".format(values)
                     self.cursor.execute(sql)
 
@@ -100,10 +100,7 @@ class ExampleProgram:
     def insert_labels(self):
         with open(self.usersWithLabels) as f:
             for i in f:
-                content = f.readline()
-                if len(content) <= 0:
-                    continue 
-                with open(r"TDT4225/exercise2-files/dataset/dataset/Data/"+content[:3]+"/labels.txt", 'r') as fp:
+                with open(r"TDT4225/exercise2-files/dataset/dataset/Data/"+str(i[:3])+"/labels.txt", 'r') as fp:
                     counter = 0
                     for line in fp:
                         line = line.replace("/", "-")
@@ -114,10 +111,32 @@ class ExampleProgram:
                         if len(line) <= 0 or counter <= 0:
                             counter+=1
                             continue
-                        query = "UPDATE Activity SET transportation_mode = '%s' WHERE start_date_time = '%s' AND end_date_time = '%s' AND user_id = '%s'"
-                        self.cursor.execute(query % (line[4], line[0]+" "+line[1], line[2]+" "+line[3], int(content[:3])))
-                    print(int(content[:3]))
-        self.db_connection.commit()
+                        query = """UPDATE Activity SET transportation_mode = '%s' WHERE start_date_time IN('%s') AND end_date_time IN('%s') AND user_id IN('%s');"""
+                        self.cursor.execute(query % (line[4], line[0]+" "+line[1], line[2]+" "+line[3], i[:3]))
+            self.db_connection.commit()
+
+    def calcDist(self):
+        coordQuery = """Select
+                lat,
+                lon
+            from
+                TrackPoint
+            where
+                activity_id in (
+                SELECT id from Activity WHERE user_id = 112 and transportation_mode = 'walk' and YEAR(start_date_time)='2008' and year(end_date_time)='2008' 
+            )"""
+        self.cursor.execute(coordQuery)
+        allCoordinates = self.cursor.fetchall()
+        cumulativeDistance = 0
+        print("Calculating distance...")
+        for i in range(len(allCoordinates)):
+            if i == len(allCoordinates)-1:
+                break
+            tempDistance = haversine(allCoordinates[i], allCoordinates[i+1], unit='km')
+            cumulativeDistance += tempDistance
+            print("Distance: "+str(cumulativeDistance))
+        print("-----------------------------")
+        print("TOTAL DISTANCE WALKED FOR USER 112: "+str(cumulativeDistance) + " km")
 
 
     def fetch_data(self, table_name):
@@ -174,17 +193,22 @@ def main():
                         ON DELETE CASCADE
                    )
                 """
-        program.create_table(table_name="User", query=userQuery)
-        program.create_table(table_name="Activity", query=activityQuery)
-        program.create_table(table_name="TrackPoint",query=trackQuery)
 
-        program.insert_userData("User")
-        program.insert_activityData("Activity")
-        program.insert_labels()
+        #UNCOMMENT THE INDIVIDUAL LINES TO CREATE THE TABLES        
+        #program.create_table(table_name="User", query=userQuery)
+        #program.create_table(table_name="Activity", query=activityQuery)
+        #program.create_table(table_name="TrackPoint",query=trackQuery)
+
+        #UNCOMMENT THE INDIVIDUAL LINES TO INSERT THE DATA
+        #program.insert_userData("User")
+        #program.insert_activityData("Activity")
+        #program.insert_labels()
+        program.calcDist()
 
 
 
     except Exception as e:
+        print(e)
         print("ERROR: Failed to use database:", e)
     finally:
         if program:

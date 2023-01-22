@@ -2,8 +2,8 @@
 
     const canvas = document.querySelector("#daVinky")
 
-    canvas.width  = window.innerWidth/2
-    canvas.height = window.innerHeight/2
+    canvas.width  = window.innerWidth-2
+    canvas.height = window.innerHeight-2
     
 
 
@@ -24,22 +24,22 @@
     ctx.fillStyle = "tomato"
     ctx.fillRect(10, 20, 200, 300)
 
-    //head
+    --head
     makeCircle(190, 245, 60,"green"), ctx.stroke();
     makeCircle(110, 245, 60,"green"), ctx.stroke();
     makeCircle(120, 345, 120,"green");
 
-    //eyes
+    --eyes
     makeCircle(230, 245, 30,"white"), ctx.stroke();
     makeCircle(150, 245, 30,"white"), ctx.stroke();
 
     makeCircle(150, 245, 15,"black");
     makeCircle(230, 245, 15,"black");
 
-    //makeCircle(155, 250, 5,"white");
-    //makeCircle(235, 250, 5,"white");
+    --makeCircle(155, 250, 5,"white");
+    --makeCircle(235, 250, 5,"white");
 
-    //mouth
+    --mouth
     ctx.beginPath();
     ctx.moveTo(90, 320);
     ctx.lineTo(120, 340);
@@ -64,7 +64,7 @@
     ctx.fillStyle = "red";
     ctx.fill();
 
-    //shirt
+    --shirt
     ctx.beginPath();
     ctx.moveTo(15, 400);
     ctx.lineTo(30, 410);
